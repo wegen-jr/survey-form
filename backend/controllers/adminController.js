@@ -13,6 +13,7 @@ const getDashboardStats = async (req, res) => {
       expenseTracking,
       profitCalculation,
       reviewFrequency,
+      dailyTransactions,
       biggestProblems,
       inventoryProblemFrequency,
       moneyLossFrequency,
@@ -49,6 +50,15 @@ const getDashboardStats = async (req, res) => {
         {
           $group: {
             _id: "$employeeCount",
+            count: { $sum: 1 },
+          },
+        },
+        { $sort: { count: -1 } },
+      ]),
+      Survey.aggregate([
+        {
+          $group: {
+            _id: "$dailyTransactions",
             count: { $sum: 1 },
           },
         },
@@ -226,6 +236,7 @@ const getDashboardStats = async (req, res) => {
       yearsOperating,
       employeeCount,
 
+      dailyTransactions,
       salesRecording,
       inventoryTracking,
       expenseTracking,
