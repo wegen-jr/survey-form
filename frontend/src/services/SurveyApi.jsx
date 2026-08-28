@@ -1,6 +1,6 @@
-const API_URL = process.env.API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 export const submitSurvey = async (formData) => {
-  const response = await fetch(`${API_URL}/api/surveys `,{
+  const response = await fetch(`${API_URL}/api/surveys`,{
     method: "POST",
     headers: {
       "Content-Type": "application/json",
