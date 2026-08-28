@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ResponseTable from "../components/ResponseTable";
-const API_URL = process.env.API_URL;
+const API_URL = process.env.API_URL
 
 export default function AdminResponses() {
   const [responses, setResponses] = useState([]);
