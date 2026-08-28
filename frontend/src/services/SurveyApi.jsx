@@ -1,4 +1,4 @@
-const API_URL = "https://survey-form-soeh.onrender.com/api/surveys";
+const API_URL = process.env.API_URL;
 export const submitSurvey = async (formData) => {
   const response = await fetch(API_URL, {
     method: "POST",
