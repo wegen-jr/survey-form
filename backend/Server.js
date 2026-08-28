@@ -9,6 +9,7 @@ app.use(cors());
 connectDB();
 
 app.use('/api/surveys',require('./routes/surveyRoute'));
+app.use('/api/admin',require('./routes/adminRoute'));
 app.listen(5000,()=>{
     console.log('server listen port 5000..');
 })
