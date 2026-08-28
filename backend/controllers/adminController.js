@@ -268,6 +268,27 @@ const getDashboardStats = async (req, res) => {
   }
 };
 
+const getAllResponses = async (req, res) => {
+  try {
+    const responses = await Survey.find()
+      .sort({ createdAt: -1 })
+      .lean();
+
+    res.status(200).json({
+      count: responses.length,
+      responses,
+    });
+  } catch (error) {
+    console.error("Get responses error:", error);
+
+    res.status(500).json({
+      message: "Failed to load survey responses",
+    });
+  }
+};
+
+
 module.exports = {
   getDashboardStats,
+  getAllResponses,
 };
