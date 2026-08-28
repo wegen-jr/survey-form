@@ -1,5 +1,4 @@
-const API_URL = "http://localhost:5000/api/surveys";
-
+const API_URL = "https://survey-form-soeh.onrender.com/api/surveys";
 export const submitSurvey = async (formData) => {
   const response = await fetch(API_URL, {
     method: "POST",
@@ -9,15 +8,23 @@ export const submitSurvey = async (formData) => {
     body: JSON.stringify(formData),
   });
 
-  const data = await response.json();
+  const text = await response.text();
+
+  console.log("Backend status:", response.status);
+  console.log("Backend response:", text);
 
   if (!response.ok) {
     throw new Error(
-      data.message ||
-        data.error ||
-        "Failed to submit survey"
+      text || `Request failed with status ${response.status}`
     );
   }
 
-  return data;
+  // Parse only if the backend actually returned JSON
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(
+      "Server returned an invalid response."
+    );
+  }
 };
