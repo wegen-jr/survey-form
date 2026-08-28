@@ -1,4 +1,4 @@
-const Survey=require('../model/surveyModel');
+const Survey=require('../models/surveyModel');
 
 const postSurvey=async(req,res )=>{
     const formData=req.body;
