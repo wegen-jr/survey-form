@@ -1,4 +1,4 @@
-const Survey = require("../models/Survey");
+const Survey = require("../models/surveyModel");
 
 const getDashboardStats = async (req, res) => {
   try {
